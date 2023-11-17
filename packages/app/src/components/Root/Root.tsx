@@ -1,10 +1,5 @@
 import React, { PropsWithChildren } from 'react';
 import { makeStyles } from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
-import ExtensionIcon from '@material-ui/icons/Extension';
-import MapIcon from '@material-ui/icons/MyLocation';
-import LibraryBooks from '@material-ui/icons/LibraryBooks';
-import CreateComponentIcon from '@material-ui/icons/AddCircleOutline';
 import LogoFull from './LogoFull';
 import LogoIcon from './LogoIcon';
 import {
@@ -24,8 +19,18 @@ import {
   useSidebarOpenState,
   Link,
 } from '@backstage/core-components';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
+
+import {
+  Home,
+  Api,
+  Document,
+  AddAlt,
+  Radar,
+  Settings,
+  Search,
+  Menu,
+} from '@carbon/icons-react';
+import { IconComponent } from '@backstage/core-plugin-api';
 
 const useSidebarLogoStyles = makeStyles({
   root: {
@@ -59,30 +64,30 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
   <SidebarPage>
     <Sidebar>
       <SidebarLogo />
-      <SidebarGroup label="Search" icon={<SearchIcon />} to="/search">
-        <SidebarSearchModal />
+      <SidebarGroup label="Search" icon={<Search />} to="/search">
+        <SidebarSearchModal icon={Search as IconComponent} />
       </SidebarGroup>
       <SidebarDivider />
-      <SidebarGroup label="Menu" icon={<MenuIcon />}>
+      <SidebarGroup label="Menu" icon={<Menu />}>
         {/* Global nav, not org-specific */}
-        <SidebarItem icon={HomeIcon} to="catalog" text="Home" />
-        <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
-        <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
-        <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
+        <SidebarItem icon={Home as IconComponent} to="catalog" text="Home" />
+        <SidebarItem icon={Api as IconComponent} to="api-docs" text="APIs" />
+        <SidebarItem icon={Document as IconComponent} to="docs" text="Docs" />
+        <SidebarItem icon={AddAlt as IconComponent} to="create" text="Create..." />
         {/* End global nav */}
         <SidebarDivider />
         <SidebarScrollWrapper>
-          <SidebarItem icon={MapIcon} to="tech-radar" text="Tech Radar" />
+          <SidebarItem icon={Radar as IconComponent} to="tech-radar" text="Tech Radar" />
         </SidebarScrollWrapper>
       </SidebarGroup>
       <SidebarSpace />
       <SidebarDivider />
       <SidebarGroup
         label="Settings"
-        icon={<UserSettingsSignInAvatar />}
+        icon={Settings}
         to="/settings"
       >
-        <SidebarSettings />
+        <SidebarSettings icon={Settings as IconComponent} />
       </SidebarGroup>
     </Sidebar>
     {children}
